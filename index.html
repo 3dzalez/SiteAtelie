@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Zalez Ateliê — Moda Feminina exclusiva em São Paulo. Peças exclusivas sob medida.">
+<meta name="theme-color" content="#0D0D0D">
+<title>Zalez Ateliê</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8D5A3;
+    --dark: #0D0D0D;
+    --dark2: #141410;
+    --dark3: #1E1C18;
+    --cream: #F5F0E8;
+    --text-muted: #9A8A70;
+    --green-wa: #25D366;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    min-height: 100vh;
+    background: var(--dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    padding: 2rem 1rem;
+    position: relative;
+  }
+
+  /* ── FUNDO DECORATIVO ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 80% 20%, rgba(201,168,76,0.07) 0%, transparent 50%),
+      radial-gradient(ellipse at 20% 80%, rgba(201,168,76,0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Linhas decorativas verticais */
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-200px);
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent 0%, rgba(201,168,76,0.12) 30%, rgba(201,168,76,0.12) 70%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── CONTAINER PRINCIPAL ── */
+  .card {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    animation: fadeUp 0.9s ease both;
+  }
+
+  /* ── LOGO ── */
+  .logo-wrap {
+    margin-bottom: 2rem;
+    animation: fadeUp 0.8s ease 0.1s both;
+  }
+  .logo-wrap svg {
+    width: 180px;
+    height: auto;
+    filter: brightness(0) invert(1);
+    opacity: 0.92;
+  }
+
+  /* ── AVATAR / FOTO ── */
+  .avatar-wrap {
+    position: relative;
+    margin-bottom: 1.8rem;
+    animation: fadeUp 0.8s ease 0.2s both;
+  }
+  .avatar-ring {
+    width: 112px;
+    height: 112px;
+    border-radius: 50%;
+    padding: 2px;
+    background: linear-gradient(135deg, var(--gold), transparent 60%, var(--gold));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .avatar-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: var(--dark3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 3px solid var(--dark2);
+  }
+  /* Monograma decorativo caso não tenha foto */
+  .avatar-monogram {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    font-style: italic;
+    color: var(--gold);
+    opacity: 0.7;
+    line-height: 1;
+  }
+
+  /* ── TEXTOS ── */
+  .name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.9rem;
+    font-weight: 300;
+    letter-spacing: 0.25em;
+    color: var(--cream);
+    text-align: center;
+    margin-bottom: 0.3rem;
+    animation: fadeUp 0.8s ease 0.3s both;
+  }
+  .name em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .tagline {
+    font-size: 0.62rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-align: center;
+    margin-bottom: 0.6rem;
+    animation: fadeUp 0.8s ease 0.35s both;
+  }
+
+  .divider {
+    width: 35px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 1.4rem;
+    animation: fadeUp 0.8s ease 0.4s both;
+  }
+
+  .bio {
+    font-size: 0.75rem;
+    line-height: 1.9;
+    color: var(--text-muted);
+    text-align: center;
+    max-width: 360px;
+    margin: 0 auto 2.2rem;
+    animation: fadeUp 0.8s ease 0.45s both;
+  }
+
+  /* ── BOTÕES DE LINK ── */
+  .links {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .link-btn {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    text-decoration: none;
+    border: 1px solid rgba(201,168,76,0.2);
+    background: rgba(201,168,76,0.03);
+    color: var(--cream);
+    transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    overflow: hidden;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .link-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(201,168,76,0.08), transparent);
+    opacity: 0;
+    transition: opacity 0.35s;
+  }
+
+  .link-btn:hover {
+    border-color: rgba(201,168,76,0.55);
+    transform: translateX(4px);
+    background: rgba(201,168,76,0.06);
+  }
+  .link-btn:hover::before { opacity: 1; }
+
+  .link-btn.whatsapp:hover {
+    border-color: rgba(37,211,102,0.5);
+    background: rgba(37,211,102,0.05);
+  }
+  .link-btn.whatsapp::before {
+    background: linear-gradient(90deg, rgba(37,211,102,0.06), transparent);
+  }
+
+  .link-btn-icon {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    width: 28px;
+    text-align: center;
+  }
+
+  .link-btn-text {
+    flex: 1;
+  }
+  .link-btn-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--cream);
+    display: block;
+  }
+  .link-btn-sub {
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    display: block;
+    margin-top: 0.15rem;
+  }
+
+  .link-btn-arrow {
+    font-size: 0.8rem;
+    color: var(--gold);
+    opacity: 0.5;
+    transition: opacity 0.3s, transform 0.3s;
+  }
+  .link-btn:hover .link-btn-arrow {
+    opacity: 1;
+    transform: translateX(3px);
+  }
+  .link-btn.whatsapp:hover .link-btn-arrow {
+    color: var(--green-wa);
+  }
+
+  /* Delays escalonados para os botões */
+  .link-btn:nth-child(1) { animation-delay: 0.5s; }
+  .link-btn:nth-child(2) { animation-delay: 0.6s; }
+  .link-btn:nth-child(3) { animation-delay: 0.7s; }
+  .link-btn:nth-child(4) { animation-delay: 0.8s; }
+
+  /* ── SEPARADOR SUTIL ── */
+  .section-sep {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+    animation: fadeUp 0.8s ease 0.48s both;
+  }
+  .section-sep::before,
+  .section-sep::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(201,168,76,0.15);
+  }
+  .section-sep-text {
+    font-size: 0.52rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(154,138,112,0.5);
+  }
+
+  /* ── FOOTER ── */
+  .footer-mark {
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(154,138,112,0.35);
+    text-align: center;
+    animation: fadeUp 0.8s ease 0.9s both;
+  }
+  .footer-mark a {
+    color: rgba(201,168,76,0.35);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer-mark a:hover { color: var(--gold); }
+
+  /* ── ANIMAÇÕES ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 520px) {
+    body { padding: 2.5rem 1.2rem; }
+    .logo-wrap svg { width: 150px; }
+    .name { font-size: 1.6rem; }
+    .link-btn { padding: 0.9rem 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+
+  <!-- LOGO -->
+  <div class="logo-wrap">
+    <svg width="100%" height="100%" viewBox="0 0 473 171" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+      <g transform="matrix(1,0,0,1,-1003.937008,-1668.653297)">
+        <g id="ZaleZ" transform="matrix(0.789463,0,0,0.789463,960.425757,1614.072131)">
+          <g transform="matrix(4.166667,0,0,4.166667,231.389167,122.565417)">
+            <path d="M0,26.377C-2.979,26.377 -7.597,23.823 -7.597,17.604C-7.597,11.289 -3.036,8.831 0,8.831C4.838,8.831 8.518,12.767 8.518,17.604C8.518,22.442 4.838,26.377 0,26.377M-0.255,6.539C-7.597,6.539 -13.037,11.503 -13.037,17.604C-13.037,23.705 -7.597,28.669 -0.255,28.669C3.333,28.669 6.517,26.945 8.541,24.291C8.54,25.791 8.539,27.309 8.539,28.654L13.993,28.654C13.993,26.246 13.994,23.268 13.996,20.871C13.998,18.101 14,15.117 14,11.402C14,3.851 7.653,-2.292 -0.148,-2.292C-3.534,-2.292 -6.811,-1.116 -9.374,1.019L-7.906,2.78C-5.755,0.988 -2.999,-0 -0.148,-0C6.217,-0 8.423,4.852 8.535,10.91C6.512,8.26 3.33,6.539 -0.255,6.539" style="fill-rule:nonzero;fill:#C9A84C"/>
+          </g>
+          <g transform="matrix(4.166667,0,0,4.166667,430.6825,232.185)">
+            <path d="M0,-26.34C3.392,-26.34 8.088,-23.549 8.082,-17.346C8.079,-14.876 7.115,-8.826 1.101,-8.826C-3.668,-8.826 -7.784,-12.327 -8.122,-16.964L-8.122,-17.176C-8.122,-22.063 -4.905,-26.34 0,-26.34M1.148,2.292C6.505,2.292 11.442,-0.037 14.035,-3.788L12.15,-5.091C10.324,-2.451 7.061,-0.439 3.317,-0.082C0.365,0.2 -7.5,-1.98 -8.068,-10.809C-6.802,-9.162 -3.901,-6.371 1.25,-6.371C11.455,-6.371 13.605,-14.956 13.605,-17.764C13.605,-23.865 8.649,-28.632 0.29,-28.632C-6.656,-28.632 -13.581,-22.236 -13.581,-13.747L-13.581,-13.093C-13.581,-4.451 -6.973,2.292 1.148,2.292" style="fill-rule:nonzero;fill:#C9A84C"/>
+          </g>
+          <g transform="matrix(4.166667,0,0,4.166667,323.64,221.26625)">
+            <path d="M0,-15.636C0,-24.836 0.477,-33.482 2.305,-33.482C4.134,-33.482 6.932,-29.824 6.932,-17.798C6.932,-5.771 3.928,2.596 1.862,5.48C0.658,2.374 0,-6.436 0,-15.636M77.454,7.966C71.405,18.712 63.341,6.353 54.639,3.97C52.476,3.378 50.115,3.357 47.476,3.718L67.505,-28.831L67.505,-31.177L38.032,-31.177L38.032,-28.831L64.778,-28.831C64.778,-28.831 46.252,-2.921 45.175,-1.402C41.177,4.239 40.649,5.102 36.243,6.539C35.724,6.701 35.192,6.867 34.654,7.037C34.6,7.054 34.553,7.069 34.498,7.085C34.491,7.087 34.49,7.089 34.484,7.091C29.889,8.546 24.624,10.268 18.448,11.951C6.996,15.071 4.633,10.746 3.081,7.78C4.969,4.233 9.196,-2.621 9.196,-16.745C9.196,-30.868 6.136,-36.511 2.25,-36.511C-2.239,-36.511 -4.945,-27.394 -5.403,-19.333C-5.917,-10.292 -2.737,0.441 0.498,7.598C-1.92,10.885 -7.895,13.554 -13.712,13.116C-22.455,12.457 -35.583,3.134 -44.855,3.134C-47.408,3.134 -50.119,3.515 -52.757,4.312L-32.362,-28.831L-32.362,-31.177L-61.835,-31.177L-61.835,-28.831L-35.089,-28.831L-64.446,12.247L-64.446,12.248L-57.64,12.248C-53.859,8.467 -40.677,6.574 -28.49,11.812C-15.896,17.225 -4.316,16.216 1.613,9.499C1.81,9.828 4.119,15.146 10.314,15.235C22.616,15.412 40.816,4.71 55.235,9.873C63.683,12.898 71.197,20.875 79.178,9.153L77.454,7.966Z" style="fill-rule:nonzero;fill:#C9A84C"/>
+          </g>
+        </g>
+      </g>
+    </svg>
+  </div>
+
+  <!-- AVATAR (monograma — troque por <img> se tiver foto) -->
+  <div class="avatar-wrap">
+    <div class="avatar-ring">
+      <div class="avatar-inner">
+        <span class="avatar-monogram">Z</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NOME E BIO -->
+  <h1 class="name">Z<em>alez</em></h1>
+  <p class="tagline">Ateliê · Moda Feminina</p>
+  <div class="divider"></div>
+  <p class="bio">
+    Peças exclusivas sob medida.<br>
+    A Zalez é uma confecção feminina de São Paulo especializada em criar peças únicas e de qualidade.
+    Trabalhamos com atenção especial aos detalhes, valorizando o estilo e a elegância de cada mulher.
+  </p>
+
+  <!-- LINKS -->
+  <div class="section-sep">
+    <span class="section-sep-text">Onde nos encontrar</span>
+  </div>
+
+  <div class="links">
+
+    <a class="link-btn whatsapp" href="https://wa.me/5511980726270" target="_blank" rel="noopener">
+      <span class="link-btn-icon">💬</span>
+      <span class="link-btn-text">
+        <span class="link-btn-label">WhatsApp</span>
+        <span class="link-btn-sub">Fale conosco · Encomendas</span>
+      </span>
+      <span class="link-btn-arrow">→</span>
+    </a>
+
+    <a class="link-btn" href="https://www.instagram.com/zzalezatelie" target="_blank" rel="noopener">
+      <span class="link-btn-icon">📸</span>
+      <span class="link-btn-text">
+        <span class="link-btn-label">Instagram</span>
+        <span class="link-btn-sub">@zzalezatelie · Ver coleção</span>
+      </span>
+      <span class="link-btn-arrow">→</span>
+    </a>
+
+    <!-- ✏️ Troque pelo link real da sua loja no Mercado Livre -->
+    <a class="link-btn" href="https://www.mercadolivre.com.br" target="_blank" rel="noopener">
+      <span class="link-btn-icon">🛒</span>
+      <span class="link-btn-text">
+        <span class="link-btn-label">Mercado Livre</span>
+        <span class="link-btn-sub">Loja oficial · Compre online</span>
+      </span>
+      <span class="link-btn-arrow">→</span>
+    </a>
+
+    <!-- ✏️ Troque pelo link real da sua loja na Shopee -->
+    <a class="link-btn" href="https://shopee.com.br" target="_blank" rel="noopener">
+      <span class="link-btn-icon">🛍️</span>
+      <span class="link-btn-text">
+        <span class="link-btn-label">Shopee</span>
+        <span class="link-btn-sub">Loja oficial · Compre online</span>
+      </span>
+      <span class="link-btn-arrow">→</span>
+    </a>
+
+    <!-- ✏️ Troque pelo link real da sua loja no Elo7 -->
+    <a class="link-btn" href="https://www.elo7.com.br" target="_blank" rel="noopener">
+      <span class="link-btn-icon">🎀</span>
+      <span class="link-btn-text">
+        <span class="link-btn-label">Elo7</span>
+        <span class="link-btn-sub">Loja oficial · Peças exclusivas</span>
+      </span>
+      <span class="link-btn-arrow">→</span>
+    </a>
+
+    <a class="link-btn" href="mailto:Thayhrabal@gmail.com" target="_blank" rel="noopener">
+      <span class="link-btn-icon">✉️</span>
+      <span class="link-btn-text">
+        <span class="link-btn-label">E-mail</span>
+        <span class="link-btn-sub">Thayhrabal@gmail.com</span>
+      </span>
+      <span class="link-btn-arrow">→</span>
+    </a>
+
+  </div>
+
+  <p class="footer-mark">© 2025 Zalez Ateliê · São Paulo</p>
+
+</div>
+
+</body>
+</html>
