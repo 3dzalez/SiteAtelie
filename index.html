@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Zalez Ateliê — Moda Feminina exclusiva em São Paulo. Peças exclusivas sob medida.">
+<meta name="theme-color" content="#0D0D0D">
+<title>Zalez Ateliê</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --gold: #C9A84C;
+    --dark: #0D0D0D;
+    --dark2: #141410;
+    --dark3: #1E1C18;
+    --cream: #F5F0E8;
+    --text-muted: #9A8A70;
+    --green-wa: #25D366;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    min-height: 100vh;
+    background: var(--dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    padding: 2rem 1rem;
+    position: relative;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 80% 20%, rgba(201,168,76,0.07) 0%, transparent 50%),
+      radial-gradient(ellipse at 20% 80%, rgba(201,168,76,0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0; left: 50%;
+    transform: translateX(-200px);
+    width: 1px; height: 100%;
+    background: linear-gradient(180deg, transparent 0%, rgba(201,168,76,0.12) 30%, rgba(201,168,76,0.12) 70%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .card {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .logo-wrap {
+    margin-bottom: 2rem;
+    animation: fadeUp 0.8s ease 0.1s both;
+  }
+  .logo-wrap svg { width: 180px; height: auto; }
+
+  /* AVATAR */
+  .avatar-wrap {
+    position: relative;
+    margin-bottom: 1.8rem;
+    animation: fadeUp 0.8s ease 0.2s both;
+  }
+  .avatar-ring {
+    width: 112px; height: 112px;
+    border-radius: 50%;
+    padding: 2px;
+    background: linear-gradient(135deg, var(--gold), transparent 60%, var(--gold));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .avatar-inner {
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    background: var(--dark3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 3px solid var(--dark2);
+    padding: 14px;
+  }
+  .avatar-inner svg { width: 100%; height: 100%; }
+
+  /* TEXTOS */
+  .name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.9rem; font-weight: 300;
+    letter-spacing: 0.25em;
+    color: var(--cream); text-align: center;
+    margin-bottom: 0.3rem;
+    animation: fadeUp 0.8s ease 0.3s both;
+  }
+  .name em { font-style: italic; color: var(--gold); }
+  .tagline {
+    font-size: 0.62rem; letter-spacing: 0.4em;
+    text-transform: uppercase; color: var(--text-muted);
+    text-align: center; margin-bottom: 0.6rem;
+    animation: fadeUp 0.8s ease 0.35s both;
+  }
+  .divider {
+    width: 35px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 1.4rem;
+    animation: fadeUp 0.8s ease 0.4s both;
+  }
+  .bio {
+    font-size: 0.75rem; line-height: 1.9;
+    color: var(--text-muted); text-align: center;
+    max-width: 360px; margin: 0 auto 2.2rem;
+    animation: fadeUp 0.8s ease 0.45s both;
+  }
+
+  /* SEPARADOR */
+  .section-sep {
+    width: 100%; display: flex; align-items: center; gap: 1rem;
+    margin-bottom: 0.75rem;
+    animation: fadeUp 0.8s ease 0.48s both;
+  }
+  .section-sep::before, .section-sep::after {
+    content: ''; flex: 1; height: 1px;
+    background: rgba(201,168,76,0.15);
+  }
+  .section-sep-text {
+    font-size: 0.52rem; letter-spacing: 0.3em;
+    text-transform: uppercase; color: rgba(154,138,112,0.5);
+  }
+
+  /* BOTÕES */
+  .links {
+    width: 100%; display: flex; flex-direction: column;
+    gap: 0.75rem; margin-bottom: 2.5rem;
+  }
+  .link-btn {
+    display: flex; align-items: center; gap: 1rem;
+    width: 100%; padding: 1rem 1.5rem;
+    text-decoration: none;
+    border: 1px solid rgba(201,168,76,0.2);
+    background: rgba(201,168,76,0.03);
+    color: var(--cream);
+    transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative; overflow: hidden;
+    animation: fadeUp 0.8s ease both;
+  }
+  .link-btn::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(201,168,76,0.08), transparent);
+    opacity: 0; transition: opacity 0.35s;
+  }
+  .link-btn:hover {
+    border-color: rgba(201,168,76,0.55);
+    transform: translateX(4px);
+    background: rgba(201,168,76,0.06);
+  }
+  .link-btn:hover::before { opacity: 1; }
+  .link-btn.whatsapp:hover {
+    border-color: rgba(37,211,102,0.5);
+    background: rgba(37,211,102,0.05);
+  }
+  .link-btn.whatsapp::before {
+    background: linear-gradient(90deg, rgba(37,211,102,0.06), transparent);
+  }
+  .link-btn-icon {
+    width: 28px; height: 28px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .link-btn-icon svg { width: 26px; height: 26px; }
+  .link-btn-text { flex: 1; }
+  .link-btn-label {
+    font-size: 0.65rem; letter-spacing: 0.25em;
+    text-transform: uppercase; font-weight: 500;
+    color: var(--cream); display: block;
+  }
+  .link-btn-sub {
+    font-size: 0.6rem; letter-spacing: 0.1em;
+    color: var(--text-muted); display: block; margin-top: 0.15rem;
+  }
+  .link-btn-arrow {
+    font-size: 0.8rem; color: var(--gold);
+    opacity: 0.5; transition: opacity 0.3s, transform 0.3s;
+  }
+  .link-btn:hover .link-btn-arrow { opacity: 1; transform: translateX(3px); }
+  .link-btn.whatsapp:hover .link-btn-arrow { color: var(--green-wa); }
+  .link-btn:nth-child(1) { animation-delay: 0.50s; }
+  .link-btn:nth-child(2) { animation-delay: 0.58s; }
+  .link-btn:nth-child(3) { animation-delay: 0.66s; }
+  .link-btn:nth-child(4) { animation-delay: 0.74s; }
+  .link-btn:nth-child(5) { animation-delay: 0.82s; }
+  .link-btn:nth-child(6) { animation-delay: 0.90s; }
+
+  .footer-mark {
+    font-size: 0.55rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: rgba(154,138,112,0.35);
+    text-align: center;
+    animation: fadeUp 0.8s ease 1s both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @media (max-width: 520px) {
+    body { padding: 2.5rem 1.2rem; }
+    .logo-wrap svg { width: 150px; }
+    .name { font-size: 1.6rem; }
+    .link-btn { padding: 0.9rem 1.2rem; }
+  }
+</style>
+</head>
+<body>
+<div class="card">
+
+  <!-- LOGO ZALEZ -->
+  <div class="logo-wrap">
+    <svg viewBox="0 0 473 171" xmlns="http://www.w3.org/2000/svg" style="fill-rule:evenodd;clip-rule:evenodd;">
+      <g transform="matrix(1,0,0,1,-1003.937008,-1668.653297)">
+        <g transform="matrix(0.789463,0,0,0.789463,960.425757,1614.072131)">
+          <g transform="matrix(4.166667,0,0,4.166667,231.389167,122.565417)">
+            <path fill="#C9A84C" style="fill-rule:nonzero;" d="M0,26.377C-2.979,26.377 -7.597,23.823 -7.597,17.604C-7.597,11.289 -3.036,8.831 0,8.831C4.838,8.831 8.518,12.767 8.518,17.604C8.518,22.442 4.838,26.377 0,26.377M-0.255,6.539C-7.597,6.539 -13.037,11.503 -13.037,17.604C-13.037,23.705 -7.597,28.669 -0.255,28.669C3.333,28.669 6.517,26.945 8.541,24.291C8.54,25.791 8.539,27.309 8.539,28.654L13.993,28.654C13.993,26.246 13.994,23.268 13.996,20.871C13.998,18.101 14,15.117 14,11.402C14,3.851 7.653,-2.292 -0.148,-2.292C-3.534,-2.292 -6.811,-1.116 -9.374,1.019L-7.906,2.78C-5.755,0.988 -2.999,-0 -0.148,-0C6.217,-0 8.423,4.852 8.535,10.91C6.512,8.26 3.33,6.539 -0.255,6.539"/>
+          </g>
+          <g transform="matrix(4.166667,0,0,4.166667,430.6825,232.185)">
+            <path fill="#C9A84C" style="fill-rule:nonzero;" d="M0,-26.34C3.392,-26.34 8.088,-23.549 8.082,-17.346C8.079,-14.876 7.115,-8.826 1.101,-8.826C-3.668,-8.826 -7.784,-12.327 -8.122,-16.964L-8.122,-17.176C-8.122,-22.063 -4.905,-26.34 0,-26.34M1.148,2.292C6.505,2.292 11.442,-0.037 14.035,-3.788L12.15,-5.091C10.324,-2.451 7.061,-0.439 3.317,-0.082C0.365,0.2 -7.5,-1.98 -8.068,-10.809C-6.802,-9.162 -3.901,-6.371 1.25,-6.371C11.455,-6.371 13.605,-14.956 13.605,-17.764C13.605,-23.865 8.649,-28.632 0.29,-28.632C-6.656,-28.632 -13.581,-22.236 -13.581,-13.747L-13.581,-13.093C-13.581,-4.451 -6.973,2.292 1.148,2.292"/>
+          </g>
+          <g transform="matrix(4.166667,0,0,4.166667,323.64,221.26625)">
+            <path fill="#C9A84C" style="fill-rule:nonzero;" d="M0,-15.636C0,-24.836 0.477,-33.482 2.305,-33.482C4.134,-33.482 6.932,-29.824 6.932,-17.798C6.932,-5.771 3.928,2.596 1.862,5.48C0.658,2.374 0,-6.436 0,-15.636M77.454,7.966C71.405,18.712 63.341,6.353 54.639,3.97C52.476,3.378 50.115,3.357 47.476,3.718L67.505,-28.831L67.505,-31.177L38.032,-31.177L38.032,-28.831L64.778,-28.831C64.778,-28.831 46.252,-2.921 45.175,-1.402C41.177,4.239 40.649,5.102 36.243,6.539C35.724,6.701 35.192,6.867 34.654,7.037C34.6,7.054 34.553,7.069 34.498,7.085C34.491,7.087 34.49,7.089 34.484,7.091C29.889,8.546 24.624,10.268 18.448,11.951C6.996,15.071 4.633,10.746 3.081,7.78C4.969,4.233 9.196,-2.621 9.196,-16.745C9.196,-30.868 6.136,-36.511 2.25,-36.511C-2.239,-36.511 -4.945,-27.394 -5.403,-19.333C-5.917,-10.292 -2.737,0.441 0.498,7.598C-1.92,10.885 -7.895,13.554 -13.712,13.116C-22.455,12.457 -35.583,3.134 -44.855,3.134C-47.408,3.134 -50.119,3.515 -52.757,4.312L-32.362,-28.831L-32.362,-31.177L-61.835,-31.177L-61.835,-28.831L-35.089,-28.831L-64.446,12.247L-64.446,12.248L-57.64,12.248C-53.859,8.467 -40.677,6.574 -28.49,11.812C-15.896,17.225 -4.316,16.216 1.613,9.499C1.81,9.828 4.119,15.146 10.314,15.235C22.616,15.412 40.816,4.71 55.235,9.873C63.683,12.898 71.197,20.875 79.178,9.153L77.454,7.966Z"/>
+          </g>
+        </g>
+      </g>
+    </svg>
+  </div>
+
+  <!-- AVATAR COM IDEOGRAMA ZALEZ -->
+  <div class="avatar-wrap">
+    <div class="avatar-ring">
+      <div class="avatar-inner">
+        <svg viewBox="0 0 1352 2214" xmlns="http://www.w3.org/2000/svg" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+          <g transform="matrix(1,0,0,1,-198.075871,-133.61967)">
+            <g transform="matrix(34.589969,0,0,34.589969,-8070.652726,-221.477492)">
+              <g transform="matrix(1,0,0,1,276.7139,20.0509)">
+                <path d="M0,29.966C-7.164,37.486 -13.503,27.634 -20.196,25.871C-22.145,25.357 -24.049,25.276 -25.885,25.56L-5.58,-7.438L-5.58,-9.785L-35.053,-9.785L-35.053,-7.438L-8.272,-7.438L-37.664,33.64L-30.857,33.64C-28.835,31.617 -24.23,30.167 -20.279,31.417C-15.582,32.903 -4.171,39.751 1.419,31.263L0,29.966Z" fill="#D2B15C" style="fill-rule:nonzero;"/>
+              </g>
+              <g transform="matrix(1,0,0,1,276.7139,38.8115)">
+                <path d="M0,29.966C-7.164,37.486 -13.503,27.634 -20.196,25.871C-22.145,25.357 -24.049,25.276 -25.885,25.56L-5.58,-7.438L-5.58,-9.785L-35.053,-9.785L-35.053,-7.438L-8.272,-7.438L-37.664,33.64L-30.857,33.64C-28.835,31.617 -24.23,30.167 -20.279,31.417C-15.582,32.903 -4.171,39.751 1.419,31.263L0,29.966Z" fill="#D2B15C" style="fill-rule:nonzero;"/>
+              </g>
+            </g>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- NOME E BIO -->
+  <h1 class="name">Z<em>alez</em></h1>
+  <p class="tagline">Ateliê · Moda Feminina</p>
+  <div class="divider"></div>
+  <p class="bio">
+    Peças exclusivas sob medida.<br>
+    A Zalez é uma confecção feminina de São Paulo especializada em criar peças únicas e de qualidade.
+    Trabalhamos com atenção especial aos detalhes, valorizando o estilo e a elegância de cada mulher.
+  </p>
+
+  <div class="section-sep">
+    <span class="section-sep-text">Onde nos encontrar</span>
+  </div>
+
+  <div class="links">
+
+    <!-- WHATSAPP -->
+    <a class="link-btn whatsapp" href="https://wa.me/5511980726270" target="_blank" rel="noopener">
+      <span class="link-btn-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path fill="#25D366" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+      </span>
+      <span class="link-btn-text">
+        <span class="link-btn-label">WhatsApp</span>
+        <span class="link-btn-sub">Fale conosco · Encomendas</span>
+      </span>
+      <span class="link-btn-arrow">→</span>
+    </a>
+
+    <!-- INSTAGRAM -->
+    <a class="link-btn" href="https://www.instagram.com/zzalezatelie" target="_blank" rel="noopener">
+      <span class="link-btn-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="ig" cx="30%" cy="107%" r="150%">
+              <stop offset="0%" stop-color="#fdf497"/>
+              <stop offset="5%" stop-color="#fdf497"/>
+              <stop offset="45%" stop-color="#fd5949"/>
+              <stop offset="60%" stop-color="#d6249f"/>
+              <stop offset="90%" stop-color="#285AEB"/>
+            </radialGradient>
+          </defs>
+          <path fill="url(#ig)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+        </svg>
+      </span>
+      <span class="link-btn-text">
+        <span class="link-btn-label">Instagram</span>
+        <span class="link-btn-sub">@zzalezatelie · Ver coleção</span>
+      </span>
+      <span class="link-btn-arrow">→</span>
+    </a>
+
+    <!-- MERCADO LIVRE -->
+    <!-- ✏️ Troque pelo link real da sua loja no Mercado Livre -->
+    <a class="link-btn" href="https://www.mercadolivre.com.br" target="_blank" rel="noopener">
+      <span class="link-btn-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="ml-bg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#FFE600"/>
+              <stop offset="100%" stop-color="#FFD000"/>
+            </linearGradient>
+          </defs>
+          <rect width="24" height="24" rx="5" fill="url(#ml-bg)"/>
+          <!-- Sorriso ML -->
+          <path fill="#3483FA" d="M12 4.5C7.86 4.5 4.5 7.86 4.5 12S7.86 19.5 12 19.5 19.5 16.14 19.5 12 16.14 4.5 12 4.5zm0 13A5.5 5.5 0 1112 6.5a5.5 5.5 0 010 11z"/>
+          <path fill="#3483FA" d="M8.5 11.5c.6 1.6 1.9 2.7 3.5 2.7s2.9-1.1 3.5-2.7H8.5z"/>
+          <circle cx="10" cy="10.2" r=".9" fill="#3483FA"/>
+          <circle cx="14" cy="10.2" r=".9" fill="#3483FA"/>
+        </svg>
+      </span>
+      <span class="link-btn-text">
+        <span class="link-btn-label">Mercado Livre</span>
+        <span class="link-btn-sub">Loja oficial · Compre online</span>
+      </span>
+      <span class="link-btn-arrow">→</span>
+    </a>
+
+    <!-- SHOPEE -->
+    <!-- ✏️ Troque pelo link real da sua loja na Shopee -->
+    <a class="link-btn" href="https://shopee.com.br" target="_blank" rel="noopener">
+      <span class="link-btn-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <rect width="24" height="24" rx="5" fill="#EE4D2D"/>
+          <!-- Shopee: rosto laranja com shopping bag simplificado -->
+          <path fill="white" d="M12 3.5a3.5 3.5 0 00-3.5 3.5H7.2l-.75 9.5h11.1l-.75-9.5h-1.3A3.5 3.5 0 0012 3.5zm0 1.5c1.1 0 2 .9 2 2h-4c0-1.1.9-2 2-2z"/>
+          <circle cx="9.5" cy="11" r="1" fill="#EE4D2D"/>
+          <circle cx="14.5" cy="11" r="1" fill="#EE4D2D"/>
+          <path fill="#EE4D2D" d="M9.5 13.5c.6 1 1.4 1.5 2.5 1.5s1.9-.5 2.5-1.5H9.5z"/>
+        </svg>
+      </span>
+      <span class="link-btn-text">
+        <span class="link-btn-label">Shopee</span>
+        <span class="link-btn-sub">Loja oficial · Compre online</span>
+      </span>
+      <span class="link-btn-arrow">→</span>
+    </a>
+
+    <!-- ELO7 -->
+    <!-- ✏️ Troque pelo link real da sua loja no Elo7 -->
+    <a class="link-btn" href="https://www.elo7.com.br" target="_blank" rel="noopener">
+      <span class="link-btn-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="elo7-bg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#F0185E"/>
+              <stop offset="100%" stop-color="#C4005A"/>
+            </linearGradient>
+          </defs>
+          <rect width="24" height="24" rx="5" fill="url(#elo7-bg)"/>
+          <text x="12" y="16" text-anchor="middle"
+            font-family="Arial Black, Helvetica Neue, sans-serif"
+            font-weight="900" font-size="8.5" fill="white" letter-spacing="-0.3">elo7</text>
+        </svg>
+      </span>
+      <span class="link-btn-text">
+        <span class="link-btn-label">Elo7</span>
+        <span class="link-btn-sub">Loja oficial · Peças exclusivas</span>
+      </span>
+      <span class="link-btn-arrow">→</span>
+    </a>
+
+    <!-- EMAIL -->
+    <a class="link-btn" href="mailto:Thayhrabal@gmail.com">
+      <span class="link-btn-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <rect width="24" height="24" rx="5" fill="#1A1A1A"/>
+          <path fill="#C9A84C" d="M4 7l8 5.5L20 7V6H4v1zm0 2.2V18h16V9.2l-8 5.5-8-5.5z"/>
+        </svg>
+      </span>
+      <span class="link-btn-text">
+        <span class="link-btn-label">E-mail</span>
+        <span class="link-btn-sub">Thayhrabal@gmail.com</span>
+      </span>
+      <span class="link-btn-arrow">→</span>
+    </a>
+
+  </div>
+
+  <p class="footer-mark">© 2025 Zalez Ateliê · São Paulo</p>
+
+</div>
+</body>
+</html>
